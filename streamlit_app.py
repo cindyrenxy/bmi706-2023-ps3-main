@@ -79,7 +79,7 @@ cancer = "Malignant neoplasm of stomach"
 # subset = subset[subset["Cancer"] == cancer]
 ### P2.4 ###
 cancers = df["Cancer"].unique().tolist()
-cancer = st.selectbox("Select Cancer Type", option=cancers, index=cancers.index(cancer))
+cancer = st.selectbox("Select Cancer Type", options=cancers, index=cancers.index(cancer))
 subset = subset[subset["Cancer"] == cancer]
 
 ### P2.5 ###
