@@ -69,7 +69,7 @@ countries = [
 # subset = subset[subset["Country"].isin(countries)]
 
 ### P2.3 ###
-st.multiselect("Select Countries", options=countries, default=None)
+st.multiselect("Select Countries", options=countries, default=countries)
 subset = subset[subset["Country"].isin(countries)]
 
 ### P2.4 ###
