@@ -33,15 +33,16 @@ df = load_data()
 
 ### P1.2 ###
 
-
 st.write("## Age-specific cancer mortality rates")
+
 
 ### P2.1 ###
 # replace with st.slider
-year = 2012
-subset = df[df["Year"] == year]
+# year = 2012
+# subset = df[df["Year"] == year]
 ### P2.1 ###
-
+year = st.slider("Select Year", min_value=2000, max_value=2017, value=year)
+subset = df[df["Year"] == year]
 
 ### P2.2 ###
 # replace with st.radio
