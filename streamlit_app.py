@@ -93,15 +93,30 @@ ages = [
     "Age >64",
 ]
 
-chart = alt.Chart(subset).mark_bar().encode(
+# chart = alt.Chart(subset).mark_bar().encode(
+#     x=alt.X("Age", sort=ages),
+#     y=alt.Y("Rate", title="Mortality rate per 100k"),
+#     color="Country",
+#     tooltip=["Rate"],
+# ).properties(
+#     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
+# )
+### P2.5 ###
+heatmap = alt.Chart(subset).mark_rect().encode(
     x=alt.X("Age", sort=ages),
     y=alt.Y("Rate", title="Mortality rate per 100k"),
-    color="Country",
+    color="Rate",
     tooltip=["Rate"],
 ).properties(
     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
 )
-### P2.5 ###
+
+bar = alt.Chart(subset).mark_bar().encode(
+    x=alt.X("Pop", title="Sum of population size"),
+    y=alt.Y("Country", sort='-x'),
+    tooltip=["Pop", "Country"]
+)
+chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
 st.altair_chart(chart, use_container_width=True)
 
