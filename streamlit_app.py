@@ -103,18 +103,18 @@ ages = [
 # )
 ### P2.5 ###
 heatmap = alt.Chart(subset).mark_rect().encode(
-    x=alt.X("Age", sort=ages),
-    y=alt.Y("Rate", title="Mortality rate per 100k"),
-    color="Rate",
+    x=alt.X("Age:O", sort=ages),
+    y=alt.Y("Country:N"),
+    color=alt.Color("Rate:Q", title="Mortality rate per 100k"),
     tooltip=["Rate"],
 ).properties(
     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
 )
 
 bar = alt.Chart(subset).mark_bar().encode(
-    x=alt.X("Pop", title="Sum of population size"),
-    y=alt.Y("Country", sort='-x'),
-    tooltip=["Pop", "Country"]
+    x=alt.X("sum(Pop):Q", title="Sum of population size"),
+    y=alt.Y("Country:N", sort='-x'),
+    tooltip=["sum(Pop):Q", "Country"]
 )
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
