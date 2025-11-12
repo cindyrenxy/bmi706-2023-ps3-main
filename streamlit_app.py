@@ -102,6 +102,7 @@ ages = [
 #     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
 # )
 ### P2.5 ###
+subset["Rate_adj"] = subset["Rate"].clip(lower=0.01) # handle 0 rates for log scale
 heatmap = alt.Chart(subset).mark_rect().encode(
     x=alt.X("Age:O", sort=ages),
     y=alt.Y("Country:N"),
