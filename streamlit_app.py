@@ -101,14 +101,18 @@ ages = [
 # ).properties(
 #     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
 # )
+
 ### P2.5 ###
+# add a click selection
+click = alt.selection_point(fields=["Age"], on="click", clear="true")
+
 heatmap = alt.Chart(subset).mark_rect().encode(
     x=alt.X("Age:O", sort=ages),
     y=alt.Y("Country:N"),
     color=alt.Color("Rate:Q", title="Mortality rate per 100k", 
                     scale=alt.Scale(type="log", domain=[0.01, 100], clamp=True)),
     tooltip=["Rate:Q"]
-).properties(
+).add_params(click).properties(
     title=f"{cancer} mortality rates for {'males' if sex == 'M' else 'females'} in {year}",
 )
 
@@ -116,6 +120,10 @@ bar = alt.Chart(subset).mark_bar().encode(
     x=alt.X("sum(Pop):Q", title="Sum of population size"),
     y=alt.Y("Country:N", sort='-x'),
     tooltip=[alt.Tooltip("sum(Pop):Q", title="Sum of population size"), "Country"]
+).add_params(click).transform_filter(
+    click
+).properties(
+    title="Population size for selected age group"
 )
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
