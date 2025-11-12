@@ -127,11 +127,8 @@ bar = alt.Chart(subset).mark_bar().encode(
     x=alt.X("sum(Pop):Q", title="Sum of population size"),
     y=alt.Y("Country:N", sort='-x'),
     tooltip=[alt.Tooltip("sum(Pop):Q", title="Sum of population size"), "Country"]
-).add_params(click).transform_filter(
-    click
-).properties(
-    title="Population size"
-)
+).add_params(click).transform_filter(click)
+
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
 st.caption("💡 Click an age group in the heatmap to see its population composition below.")
