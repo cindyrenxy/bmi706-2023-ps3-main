@@ -41,6 +41,7 @@ st.write(f"year: {df['Year'].min()}, {df['Year'].max()}")
 # replace with st.slider
 # year = 2012
 # subset = df[df["Year"] == year]
+
 ### P2.1 ###
 year = st.slider("Select Year", min_value=2000, max_value=2017, value=2012)
 subset = df[df["Year"] == year]
@@ -49,8 +50,9 @@ subset = df[df["Year"] == year]
 # replace with st.radio
 # sex = "M"
 # subset = subset[subset["Sex"] == sex]
+
 ### P2.2 ###
-sex = st.radio("Select Sex", option=["M", "F"], index=0)
+sex = st.radio("Select Sex", options=["M", "F"], index=0)
 subset = subset[subset["Sex"] == sex]
 
 ### P2.3 ###
@@ -66,6 +68,7 @@ countries = [
     "Turkey",
 ]
 # subset = subset[subset["Country"].isin(countries)]
+
 ### P2.3 ###
 st.multiselect("Select Countries", options=countries, default=None)
 subset = subset[subset["Country"].isin(countries)]
