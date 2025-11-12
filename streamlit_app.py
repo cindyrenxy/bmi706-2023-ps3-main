@@ -34,6 +34,7 @@ df = load_data()
 ### P1.2 ###
 
 st.write("## Age-specific cancer mortality rates")
+st.write(f"year: {df['Year'].min()}, {df['Year'].max()}")
 
 
 ### P2.1 ###
@@ -46,10 +47,11 @@ subset = df[df["Year"] == year]
 
 ### P2.2 ###
 # replace with st.radio
-sex = "M"
-subset = subset[subset["Sex"] == sex]
+# sex = "M"
+# subset = subset[subset["Sex"] == sex]
 ### P2.2 ###
-
+sex = st.radio("Select Sex", option=["M", "F"], index=0)
+subset = subset[subset["Sex"] == sex]
 
 ### P2.3 ###
 # replace with st.multiselect
@@ -63,16 +65,19 @@ countries = [
     "Thailand",
     "Turkey",
 ]
-subset = subset[subset["Country"].isin(countries)]
+# subset = subset[subset["Country"].isin(countries)]
 ### P2.3 ###
-
+st.multiselect("Select Countries", options=countries, default=None)
+subset = subset[subset["Country"].isin(countries)]
 
 ### P2.4 ###
 # replace with st.selectbox
 cancer = "Malignant neoplasm of stomach"
-subset = subset[subset["Cancer"] == cancer]
+# subset = subset[subset["Cancer"] == cancer]
 ### P2.4 ###
-
+cancers = df["Cancer"].unique().tolist()
+cancer = st.selectbox("Select Cancer Type", option=cancers, index=cancers.index(cancer))
+subset = subset[subset["Cancer"] == cancer]
 
 ### P2.5 ###
 ages = [
