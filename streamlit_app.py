@@ -130,7 +130,7 @@ bar = alt.Chart(subset).mark_bar().encode(
 ).add_params(click).transform_filter(
     click
 ).properties(
-    title="Population size for selected age group"
+    title="Population size"
 )
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
