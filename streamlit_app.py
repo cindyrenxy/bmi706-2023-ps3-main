@@ -134,6 +134,7 @@ bar = alt.Chart(subset).mark_bar().encode(
 )
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
+st.caption("💡 Click an age group in the heatmap to see its population composition below.")
 st.altair_chart(chart, use_container_width=True)
 
 countries_in_subset = subset["Country"].unique()
