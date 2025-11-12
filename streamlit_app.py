@@ -115,7 +115,7 @@ heatmap = alt.Chart(subset).mark_rect().encode(
 bar = alt.Chart(subset).mark_bar().encode(
     x=alt.X("sum(Pop):Q", title="Sum of population size"),
     y=alt.Y("Country:N", sort='-x'),
-    tooltip=["sum(Pop):Q", "Country"]
+    tooltip=[alt.Tooltip("sum(Pop):Q", title="Sum of population size"), "Country"]
 )
 chart = alt.vconcat(heatmap, bar).resolve_scale(color='independent')
 
